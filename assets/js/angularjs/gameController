@@ -1,0 +1,302 @@
+(function(angular) {
+  'use strict';
+angular.module('ngGame', []).controller('ngGameController', function($scope) {
+
+  $scope.game = {
+    "column1": {
+      value1:2,
+      value2:4,
+      value3:null,
+      value4:2
+    },
+    "column2": {
+      value1:2,
+      value2:null,
+      value3:2,
+      value4:4
+    },
+    "column3": {
+      value1:4,
+      value2:2,
+      value3:null,
+      value4:2
+    },
+    "column4": {
+      value1:2,
+      value2:null,
+      value3:null,
+      value4:2
+    },
+  };
+
+  $scope.color = {
+    "column1": {
+      value1:null,
+      value2:null,
+      value3:null,
+      value4:null
+    },
+    "column2": {
+      value1:null,
+      value2:null,
+      value3:null,
+      value4:null
+    },
+    "column3": {
+      value1:null,
+      value2:null,
+      value3:null,
+      value4:null
+    },
+    "column4": {
+      value1:null,
+      value2:null,
+      value3:null,
+      value4:null
+    },
+  };
+
+  $scope.user = {
+    id:"1",
+    login:"Eduardo",
+    senha:"123",
+    name:"Eduardo Pedro Meneghel",
+    image:"foto.png",
+  };
+
+  let valores = [];
+
+  $scope.keyPress = function(keyEvent) {
+    switch(keyEvent.which){
+      case 38:
+        //UP
+        up();
+      break;
+      case 40:
+        //DOWN
+        down();
+      break;
+      case 37:
+        //LEFT
+        left();
+      break;
+      case 39:
+        //RIGHT
+        right();
+      break;
+    }
+  }
+
+  function up(){
+    
+  }
+  function down(){
+    
+  }
+
+
+
+
+
+  function left(){
+      let contador = 1;
+    angular.forEach($scope.game, function(obj, collumn){
+      valores = [];
+      contador = 1;
+      angular.forEach($scope.game[collumn], function(value, key){
+        if(value != null){
+          valores[contador] = $scope.game[collumn][key];
+          contador++;
+        }else{
+          contador++;
+        }
+      });
+      console.log(valores);
+      valores[1] == valores[2] && valores[3] == valores[4] && valores[1] && valores[3]  ? verificacaoLeft(1,collumn, valores[1], valores[3])  : false;
+      
+      valores[1] == valores[2] && valores[1] && !valores[3] && !valores[4] ? verificacaoLeft(2, collumn,valores[1], null)  : false;
+      valores[1] == valores[2] && valores[1] && !valores[3] ? verificacaoLeft(3, collumn,valores[1], valores[4])  : false;
+      valores[1] == valores[2] && valores[1] && !valores[4] ? verificacaoLeft(4, collumn,valores[1], valores[3])  : false;
+      
+      valores[1] == valores[3] && valores[1] && !valores[2] && !valores[4] ? verificacaoLeft(5, collumn, valores[1], null)  : false;
+      valores[1] == valores[3] && valores[1] && !valores[2] ? verificacaoLeft(6, collumn, valores[1], valores[4])  : false;
+      
+      valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3]? verificacaoLeft(7, collumn, valores[1], null)  : false;
+   
+      valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoLeft(8, collumn, valores[2], null)  : false;
+      valores[2] == valores[3] && valores[2] && !valores[1] ? verificacaoLeft(9, collumn, valores[2], valores[4])  : false;
+      valores[2] == valores[3] && valores[2] && !valores[4] ? verificacaoLeft(10, collumn, valores[2], valores[1])  : false;
+
+      valores[2] == valores[4] && valores[2] && !valores[3] && !valores[1] && !valores[3] ? verificacaoLeft(11, collumn, valores[2], null)  : false;
+      valores[2] == valores[4] && valores[2] && !valores[3] && !valores[1] ? verificacaoLeft(12, collumn, valores[2], valores[3])  : false;
+      valores[2] == valores[4] && valores[2] && !valores[3] && !valores[3] ? verificacaoLeft(13, collumn, valores[2], valores[1])  : false;
+
+      valores[3] == valores[4] && valores[3] && !valores[1] && !valores[2] ? verificacaoLeft(14, collumn, valores[3], null)  : false;
+      valores[3] == valores[4] && valores[3] && !valores[1] ? verificacaoLeft(15, collumn, valores[3], valores[2])  : false;
+      valores[3] == valores[4] && valores[3] && !valores[2] ? verificacaoLeft(16, collumn, valores[3], valores[1])  : false;
+    
+    });
+    color();
+  }
+
+
+
+
+
+  function right(){
+    if($scope.game.column1.value1 != 2048){
+    $scope.game.column1.value1 *= 2;
+    } else {
+      alert('Você ganhou')
+    }
+    color();
+  }
+  
+  function verificacaoLeft(element, collumn, valor1, valor2){
+  console.log(element, collumn, valor1, valor2);
+    switch(element){
+      case 1:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = valor2*2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 2:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = null;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 3:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = valor2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 4:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = valor2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 5:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = null;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 6:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = valor2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 7:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = null;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 8:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = null;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 9:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = valor2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 10:
+        $scope.game[collumn]['value1'] = valor2;
+        $scope.game[collumn]['value2'] = valor1*2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 11:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = null;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 12:
+        $scope.game[collumn]['value1'] = valor1*2;
+        $scope.game[collumn]['value2'] = valor2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 13:
+        $scope.game[collumn]['value1'] = valor2;
+        $scope.game[collumn]['value2'] = valor1*2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 14:
+          $scope.game[collumn]['value1'] = valor1*2;
+          $scope.game[collumn]['value2'] = null;
+          $scope.game[collumn]['value3'] = null;
+          $scope.game[collumn]['value4'] = null;
+          break;
+      case 15:
+        $scope.game[collumn]['value1'] = valor2;
+        $scope.game[collumn]['value2'] = valor1*2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+      case 16:
+        $scope.game[collumn]['value1'] = valor2;
+        $scope.game[collumn]['value2'] = valor1*2;
+        $scope.game[collumn]['value3'] = null;
+        $scope.game[collumn]['value4'] = null;
+        break;
+    }
+  }
+
+  function color(){
+    angular.forEach($scope.game, function(obj, collumn){
+      angular.forEach($scope.game[collumn], function(element, value){
+        switch(element){
+          case 2:
+            $scope.color[collumn][value] = 'Gold';
+            break;
+          case 4:
+            $scope.color[collumn][value] = 'DarkOrange';
+            break;
+          case 8:
+            $scope.color[collumn][value] = 'DodgerBlue';
+            break;
+          case 16:
+            $scope.color[collumn][value] = 'DeepSkyBlue';
+            break;
+          case 32:
+            $scope.color[collumn][value] = 'DeepPink';
+            break;
+          case 64:
+            $scope.color[collumn][value] = 'LawnGreen';
+            break;
+          case 128:
+            $scope.color[collumn][value] = 'Orchid';
+            break;
+          case 256:
+            $scope.color[collumn][value] = 'MediumPurple';
+            break;
+          case 512:
+            $scope.color[collumn][value] = 'DeepPink';
+            break;
+          case 1024:
+            $scope.color[collumn][value] = 'DodgerBlue';
+            break;
+          case 2048:
+            $scope.color[collumn][value] = 'BlueViolet';
+            break;
+          default:
+            $scope.color[collumn][value] = 'Gray';
+            break;
+        }
+      });
+    });
+  }
+});
+})(window.angular);
