@@ -1,30 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="ngGame">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link href="./assets/css/bootstrap.css" rel="stylesheet">
-        <link href="./assets/css/reset.css" rel="stylesheet">
-        <link href="./assets/css/style.css" rel="stylesheet">
-        <script src="./assets/js/angular.min.js"></script>
-        <script src="./assets/js/angularjs/gameController"></script>
-    </head>
-    <body>
-      <div style="text-align: center;">
-        <img src="./assets/images/profile.png" style="height: 250px;">
-      </div>
-      <main style="margin: 0 auto;">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem; margin: 0 auto;">
-          <div class="card-header text-center">Login</div>
-          <div class="card-body">
-            <h5 class="card-title">Login:</h5>
-            <input class="mb-3 w-100">
-            <h5 class="card-title">Senha:</h5>
-            <input class="mb-3  w-100">
-            <a href="./game.html"><button type="button" class="btn btn-success w-100 mb-3">Entrar</button></a>
-            <a href="./registro.html"><button type="button" class="btn btn-danger w-100 mb-3">Registrar-se</button></a>
+  <head>
+    <meta charset="UTF-8">
+    <title>2048</title>
+    <link href="./assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./assets/css/reset.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <script src="./assets/js/angular.min.js"></script>
+    <script src="./assets/js/angularjs/gameController"></script>
+  </head>
+  <body ng-controller="ngGameController" ng-keydown="keyPress($event)">
+    <header class="bg-dark">
+      <img src="./assets/images/{{user.image}}" class="img-sl b-radium-50">
+    </header>
+    <div class="container">
+      <h1 class="my-5" style="text-align: center;">Olá {{user.name}}!</h1>
+      <main class="game">
+        <div class="row">
+          <div class="col square" style="background-color: {{game.color.column1.value1}};">
+            <p class="value">{{game.data.column1.value1}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column1.value2}};">
+            <p class="value">{{game.data.column1.value2}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column1.value3}};">
+            <p class="value">{{game.data.column1.value3}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column1.value4}};">
+            <p class="value">{{game.data.column1.value4}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col square" style="background-color: {{game.color.column2.value1}};">
+            <p class="value">{{game.data.column2.value1}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column2.value2}};">
+            <p class="value">{{game.data.column2.value2}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column2.value3}};">
+            <p class="value">{{game.data.column2.value3}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column2.value4}};">
+            <p class="value">{{game.data.column2.value4}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col square" style="background-color: {{game.color.column3.value1}};">
+            <p class="value">{{game.data.column3.value1}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column3.value2}};">
+            <p class="value">{{game.data.column3.value2}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column3.value3}};">
+            <p class="value">{{game.data.column3.value3}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column3.value4}};">
+            <p class="value">{{game.data.column3.value4}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col square" style="background-color: {{game.color.column4.value1}};">
+            <p class="value">{{game.data.column4.value1}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column4.value2}};">
+            <p class="value">{{game.data.column4.value2}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column4.value3}};">
+            <p class="value">{{game.data.column4.value3}}</p>
+          </div>
+          <div class="col square" style="background-color: {{game.color.column4.value4}};">
+            <p class="value">{{game.data.column4.value4}}</p>
           </div>
         </div>
       </main>
-    </body>
+      <a href="./login.html"><button type="button" class="btn btn-danger w-100 mt-3">Sair</button></a>
+    </div>
+  </body>
 </html>

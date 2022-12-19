@@ -2,58 +2,61 @@
   'use strict';
 angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
+  
+  
   $scope.game = {
-    "column1": {
-      value1:2,
-      value2:4,
-      value3:null,
-      value4:2
+    "data" : {
+      "column1": {
+        value1:2,
+        value2:2,
+        value3:2,
+        value4:null
+      },
+      "column2": {
+        value1:2,
+        value2:null,
+        value3:2,
+        value4:4
+      },
+      "column3": {
+        value1:2,
+        value2:2,
+        value3:8,
+        value4:null
+      },
+      "column4": {
+        value1:null,
+        value2:8,
+        value3:null,
+        value4:2
+      },
     },
-    "column2": {
-      value1:2,
-      value2:null,
-      value3:2,
-      value4:4
-    },
-    "column3": {
-      value1:4,
-      value2:2,
-      value3:null,
-      value4:2
-    },
-    "column4": {
-      value1:2,
-      value2:null,
-      value3:null,
-      value4:2
-    },
-  };
-
-  $scope.color = {
-    "column1": {
-      value1:null,
-      value2:null,
-      value3:null,
-      value4:null
-    },
-    "column2": {
-      value1:null,
-      value2:null,
-      value3:null,
-      value4:null
-    },
-    "column3": {
-      value1:null,
-      value2:null,
-      value3:null,
-      value4:null
-    },
-    "column4": {
-      value1:null,
-      value2:null,
-      value3:null,
-      value4:null
-    },
+    "color" : {
+        "column1": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+        "column2": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+        "column3": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+        "column4": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+      }
   };
 
   $scope.user = {
@@ -64,235 +67,1477 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
     image:"foto.png",
   };
 
+  color();
+
   let valores = [];
 
   $scope.keyPress = function(keyEvent) {
     switch(keyEvent.which){
       case 38:
-        //UP
+        //Todo implementar then - finally 
         up();
+        random();
+        gameOver();
       break;
       case 40:
-        //DOWN
         down();
+        random();
+        gameOver();
       break;
       case 37:
-        //LEFT
         left();
+        random();
+        gameOver();
       break;
       case 39:
-        //RIGHT
         right();
+        random();
+        gameOver();
       break;
     }
   }
 
   function up(){
-    
+    let collumns = [];
+    let positions = [];
+    let contadorCollumns = 1;
+    let contadorPosition = 1;
+    let contador = 1;
+    let valores = [];
+    let obj;
+    angular.forEach($scope.game.data, function(obj, collumn){
+      collumns[contadorCollumns] = collumn;
+      contadorCollumns++;
+      let contadorPositions = 1;
+      angular.forEach($scope.game.data[collumn], function(value, position){
+        positions[contadorPositions] = position;
+        contadorPositions++
+      });
+    });
+    angular.forEach($scope.game.data, function(){
+      contador = 1;
+      angular.forEach($scope.game.data, function(){
+      valores[contador] = $scope.game.data[collumns[contador]][positions[contadorPosition]];
+      contador++;
+      })
+      //2244  1
+      valores[1] == valores[2] && valores[3] == valores[4] && valores[1] && valores[3]  ? verificacaoUp(1,collumns,  valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //2200  2
+      valores[1] == valores[2] && valores[1] && !valores[3] && !valores[4] ? verificacaoUp(2, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2204  3
+      valores[1] == valores[2] && valores[1] && !valores[3] && valores[4] ? verificacaoUp(3, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2240  4
+      valores[1] == valores[2] && valores[1] && valores[3] && !valores[4] ? verificacaoUp(4, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2248  5
+      valores[1] == valores[2] && valores[1] && valores[3] && valores[4] && valores[3] != valores[4] ? verificacaoUp(5, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0022  6
+      valores[3] == valores[4] && valores[3] && !valores[1] && !valores[2] ? verificacaoUp(6, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0422  7
+      valores[3] == valores[4] && valores[3] && !valores[1] && valores[2] ? verificacaoUp(7, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4022  8
+      valores[3] == valores[4] && valores[3] && valores[1] && !valores[2] ? verificacaoUp(8, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4822  9
+      valores[3] == valores[4] && valores[3] && valores[1] && valores[2] && valores[1] != valores[2] ? verificacaoUp(9, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0220  10
+      valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoUp(10, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4220  11
+      valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoUp(11, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0224  12
+      valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoUp(12, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4224  13
+      valores[2] == valores[3] && valores[2] && valores[1] && valores[4] ? verificacaoUp(13, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+
+
+      //0202  14
+      valores[2] == valores[4] && valores[2] && !valores[1] && !valores[3] ? verificacaoUp(14, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4202  15
+      valores[2] == valores[4] && valores[2] && valores[1] && !valores[3] ? verificacaoUp(15, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0242  16
+      valores[2] == valores[4] && valores[2] && !valores[1] && valores[3] ? verificacaoUp(16, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //2020  17
+      valores[1] == valores[3] && valores[1] && !valores[2] && !valores[4] ? verificacaoUp(17, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2024  18
+      valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoUp(18, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2420  19
+      valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoUp(19, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //2002  20
+      valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoUp(20, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2402  21
+      valores[1] == valores[4] && valores[1] && valores[2] && !valores[3] ? verificacaoUp(21, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2042  22
+      valores[1] == valores[4] && valores[1] && !valores[2] && valores[3] ? verificacaoUp(22, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+
+      //0002  23
+      !valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoUp(23, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0020  24
+      !valores[1] && !valores[2] && valores[3] && !valores[4] ? verificacaoUp(24, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0200  25
+      !valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoUp(25, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2000  26
+      valores[1] && !valores[2] && !valores[3] && !valores[4] ? verificacaoUp(26, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0024  27
+      valores[3] != valores[4] && valores[3] && valores[4] && !valores[1] && !valores[2] ? verificacaoUp(27, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0204  28
+      valores[2] != valores[4] && !valores[1] && !valores[3] && valores[2] && valores[4] ? verificacaoUp(28, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2004  29
+      valores[1] != valores[4] && !valores[1] && !valores[3] && valores[1] && valores[4] ? verificacaoUp(29, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0420  30
+      valores[2] != valores[3] && valores[2] && valores[3] && !valores[1] && !valores[4] ? verificacaoUp(30, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4020  31
+      valores[1] != valores[3] && valores[1] && valores[3] && !valores[2] && !valores[4] ? verificacaoUp(31, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //4200  32
+      valores[1] != valores[2] && valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoUp(32, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //4208  33
+      valores[1] != valores[2] && valores[2] != valores[4] && valores[1]  && valores[2] && valores[4] && !valores[3] ? verificacaoUp(33, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2004  34
+      valores[1] != valores[4] && valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoUp(34, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0248 35
+      valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoUp(35, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2480 36
+      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoUp(36, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2048 37
+      valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoUp(37, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+
+      contadorPosition++;
+      color();
+    })
   }
+
   function down(){
-    
+    let collumns = [];
+    let positions = [];
+    let contadorCollumns = 1;
+    let contadorPosition = 1;
+    let contador = 1;
+    let valores = [];
+    let obj;
+    angular.forEach($scope.game.data, function(obj, collumn){
+      collumns[contadorCollumns] = collumn;
+      contadorCollumns++;
+      let contadorPositions = 1;
+      angular.forEach($scope.game.data[collumn], function(value, position){
+        positions[contadorPositions] = position;
+        contadorPositions++
+      });
+    });
+    angular.forEach($scope.game.data, function(){
+      contador = 1;
+      angular.forEach($scope.game.data, function(){
+      valores[contador] = $scope.game.data[collumns[contador]][positions[contadorPosition]];
+      contador++;
+      })
+      
+      //2244  1
+      valores[1] == valores[2] && valores[3] == valores[4] && valores[1] && valores[3]  ? verificacaoDown(1,collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //2200  2
+      valores[1] == valores[2] && valores[1] && !valores[3] && !valores[4] ? verificacaoDown(2, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2204  3
+      valores[1] == valores[2] && valores[1] && !valores[3] && valores[4] ? verificacaoDown(3, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2240  4
+      valores[1] == valores[2] && valores[1] && valores[3] && !valores[4] ? verificacaoDown(4, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2248  5
+      valores[1] == valores[2] && valores[1] && valores[3] && valores[4] && valores[3] != valores[4] ? verificacaoDown(5, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0022  6
+      valores[3] == valores[4] && valores[3] && !valores[1] && !valores[2] ? verificacaoDown(6, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0422  7
+      valores[3] == valores[4] && valores[3] && !valores[1] && valores[2] ? verificacaoDown(7, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4022  8
+      valores[3] == valores[4] && valores[3] && valores[1] && !valores[2] ? verificacaoDown(8, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4822  9
+      valores[3] == valores[4] && valores[3] && valores[1] && valores[2] && valores[1] != valores[2] ? verificacaoDown(9, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0220  10
+      valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoDown(10, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4220  11
+      valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoDown(11, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0224  12
+      valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoDown(12, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4224  13
+      valores[2] == valores[3] && valores[2] && valores[1] && valores[4] ? verificacaoDown(13, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+
+
+      //0202  14
+      valores[2] == valores[4] && valores[2] && !valores[1] && !valores[3] ? verificacaoDown(14, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4202  15
+      valores[2] == valores[4] && valores[2] && valores[1] && !valores[3] ? verificacaoDown(15, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0242  16
+      valores[2] == valores[4] && valores[2] && !valores[1] && valores[3] ? verificacaoDown(16, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //2020  17
+      valores[1] == valores[3] && valores[1] && !valores[2] && !valores[4] ? verificacaoDown(17, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2024  18
+      valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoDown(18, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2420  19
+      valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoDown(19, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //2002  20
+      valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoDown(20, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2402  21
+      valores[1] == valores[4] && valores[1] && valores[2] && !valores[3] ? verificacaoDown(21, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2042  22
+      valores[1] == valores[4] && valores[1] && !valores[2] && valores[3] ? verificacaoDown(22, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+
+      //0002  23
+      !valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoDown(23, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0020  24
+      !valores[1] && !valores[2] && valores[3] && !valores[4] ? verificacaoDown(24, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0200  25
+      !valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoDown(25, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2000  26
+      valores[1] && !valores[2] && !valores[3] && !valores[4] ? verificacaoDown(26, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0024  27
+      valores[3] != valores[4] && valores[3] && valores[4] && !valores[1] && !valores[2] ? verificacaoDown(27, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0204  28
+      valores[2] != valores[4] && !valores[1] && !valores[3] && valores[2] && valores[4] ? verificacaoDown(28, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2004  29
+      valores[1] != valores[4] && !valores[1] && !valores[3] && valores[1] && valores[4] ? verificacaoDown(29, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //0420  30
+      valores[2] != valores[3] && valores[2] && valores[3] && !valores[1] && !valores[4] ? verificacaoDown(30, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //4020  31
+      valores[1] != valores[3] && valores[1] && valores[3] && !valores[2] && !valores[4] ? verificacaoDown(31, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //4200  32
+      valores[1] != valores[2] && valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoDown(32, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      
+      //4208  33
+      valores[1] != valores[2] && valores[2] != valores[4] && valores[1]  && valores[2] && valores[4] && !valores[3] ? verificacaoDown(33, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2004  34
+      valores[1] != valores[4] && valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoDown(34, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //0248 35
+      valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoDown(35, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2480 36
+      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoDown(36, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      //2048 37
+      valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoDown(37, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+
+      contadorPosition++;
+      color();
+    })
   }
 
-
-
-
-
-  function left(){
-      let contador = 1;
-    angular.forEach($scope.game, function(obj, collumn){
+  function right(){
+    let contador;
+    angular.forEach($scope.game.data, function(obj, collumn){
       valores = [];
       contador = 1;
-      angular.forEach($scope.game[collumn], function(value, key){
+      angular.forEach($scope.game.data[collumn], function(value, key){
         if(value != null){
-          valores[contador] = $scope.game[collumn][key];
+          valores[contador] = $scope.game.data[collumn][key];
           contador++;
         }else{
           contador++;
         }
       });
-      console.log(valores);
-      valores[1] == valores[2] && valores[3] == valores[4] && valores[1] && valores[3]  ? verificacaoLeft(1,collumn, valores[1], valores[3])  : false;
-      
-      valores[1] == valores[2] && valores[1] && !valores[3] && !valores[4] ? verificacaoLeft(2, collumn,valores[1], null)  : false;
-      valores[1] == valores[2] && valores[1] && !valores[3] ? verificacaoLeft(3, collumn,valores[1], valores[4])  : false;
-      valores[1] == valores[2] && valores[1] && !valores[4] ? verificacaoLeft(4, collumn,valores[1], valores[3])  : false;
-      
-      valores[1] == valores[3] && valores[1] && !valores[2] && !valores[4] ? verificacaoLeft(5, collumn, valores[1], null)  : false;
-      valores[1] == valores[3] && valores[1] && !valores[2] ? verificacaoLeft(6, collumn, valores[1], valores[4])  : false;
-      
-      valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3]? verificacaoLeft(7, collumn, valores[1], null)  : false;
-   
-      valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoLeft(8, collumn, valores[2], null)  : false;
-      valores[2] == valores[3] && valores[2] && !valores[1] ? verificacaoLeft(9, collumn, valores[2], valores[4])  : false;
-      valores[2] == valores[3] && valores[2] && !valores[4] ? verificacaoLeft(10, collumn, valores[2], valores[1])  : false;
 
-      valores[2] == valores[4] && valores[2] && !valores[3] && !valores[1] && !valores[3] ? verificacaoLeft(11, collumn, valores[2], null)  : false;
-      valores[2] == valores[4] && valores[2] && !valores[3] && !valores[1] ? verificacaoLeft(12, collumn, valores[2], valores[3])  : false;
-      valores[2] == valores[4] && valores[2] && !valores[3] && !valores[3] ? verificacaoLeft(13, collumn, valores[2], valores[1])  : false;
+      //2244  1
+      valores[1] == valores[2] && valores[3] == valores[4] && valores[1] && valores[3]  ? verificacaoRight(1,collumn,  valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //2200  2
+      valores[1] == valores[2] && valores[1] && !valores[3] && !valores[4] ? verificacaoRight(2, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2204  3
+      valores[1] == valores[2] && valores[1] && !valores[3] && valores[4] ? verificacaoRight(3, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2240  4
+      valores[1] == valores[2] && valores[1] && valores[3] && !valores[4] ? verificacaoRight(4, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2248  5
+      valores[1] == valores[2] && valores[1] && valores[3] && valores[4] && valores[3] != valores[4] ? verificacaoRight(5, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //0022  6
+      valores[3] == valores[4] && valores[3] && !valores[1] && !valores[2] ? verificacaoRight(6, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0422  7
+      valores[3] == valores[4] && valores[3] && !valores[1] && valores[2] ? verificacaoRight(7, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //4022  8
+      valores[3] == valores[4] && valores[3] && valores[1] && !valores[2] ? verificacaoRight(8, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //4822  9
+      valores[3] == valores[4] && valores[3] && valores[1] && valores[2] && valores[1] != valores[2] ? verificacaoRight(9, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //0220  10
+      valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoRight(10, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //4220  11
+      valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoRight(11, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0224  12
+      valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoRight(12, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //4224  13
+      valores[2] == valores[3] && valores[2] && valores[1] && valores[4] ? verificacaoRight(13, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
 
-      valores[3] == valores[4] && valores[3] && !valores[1] && !valores[2] ? verificacaoLeft(14, collumn, valores[3], null)  : false;
-      valores[3] == valores[4] && valores[3] && !valores[1] ? verificacaoLeft(15, collumn, valores[3], valores[2])  : false;
-      valores[3] == valores[4] && valores[3] && !valores[2] ? verificacaoLeft(16, collumn, valores[3], valores[1])  : false;
-    
+
+      //0202  14
+      valores[2] == valores[4] && valores[2] && !valores[1] && !valores[3] ? verificacaoRight(14, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //4202  15
+      valores[2] == valores[4] && valores[2] && valores[1] && !valores[3] ? verificacaoRight(15, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0242  16
+      valores[2] == valores[4] && valores[2] && !valores[1] && valores[3] ? verificacaoRight(16, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //2020  17
+      valores[1] == valores[3] && valores[1] && !valores[2] && !valores[4] ? verificacaoRight(17, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2024  18
+      valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoRight(18, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2420  19
+      valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoRight(19, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //2002  20
+      valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoRight(20, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2402  21
+      valores[1] == valores[4] && valores[1] && valores[2] && !valores[3] ? verificacaoRight(21, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2042  22
+      valores[1] == valores[4] && valores[1] && !valores[2] && valores[3] ? verificacaoRight(22, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+
+      //0002  23
+      !valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoRight(23, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0020  24
+      !valores[1] && !valores[2] && valores[3] && !valores[4] ? verificacaoRight(24, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0200  25
+      !valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoRight(25, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2000  26
+      valores[1] && !valores[2] && !valores[3] && !valores[4] ? verificacaoRight(26, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //0024  27
+      valores[3] != valores[4] && valores[3] && valores[4] && !valores[1] && !valores[2] ? verificacaoRight(27, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0204  28
+      valores[2] != valores[4] && !valores[1] && !valores[3] && valores[2] && valores[4] ? verificacaoRight(28, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2004  29
+      valores[1] != valores[4] && !valores[1] && !valores[3] && valores[1] && valores[4] ? verificacaoRight(29, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //0420  30
+      valores[2] != valores[3] && valores[2] && valores[3] && !valores[1] && !valores[4] ? verificacaoRight(30, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //4020  31
+      valores[1] != valores[3] && valores[1] && valores[3] && !valores[2] && !valores[4] ? verificacaoRight(31, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //4200  32
+      valores[1] != valores[2] && valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoRight(32, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      
+      //4208  33
+      valores[1] != valores[2] && valores[2] != valores[4] && valores[1]  && valores[2] && valores[4] && !valores[3] ? verificacaoRight(33, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2004  34
+      valores[1] != valores[4] && valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoRight(34, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //0248 35
+      valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoRight(35, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2480 36
+      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoRight(36, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      //2048 37
+      valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoRight(37, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+
+
     });
     color();
   }
 
+  function left(){
+      let contador = 1;
+    angular.forEach($scope.game.data, function(obj, collumn){
+      valores = [];
+      contador = 1;
+      angular.forEach($scope.game.data[collumn], function(value, key){
+        if(value != null){
+          valores[contador] = $scope.game.data[collumn][key];
+          contador++;
+        }else{
+          contador++;
+        }
+      });
+      
+        //2244  1
+        valores[1] == valores[2] && valores[3] == valores[4] && valores[1] && valores[3]  ? verificacaoLeft(1,collumn,  valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //2200  2
+        valores[1] == valores[2] && valores[1] && !valores[3] && !valores[4] ? verificacaoLeft(2, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2204  3
+        valores[1] == valores[2] && valores[1] && !valores[3] && valores[4] ? verificacaoLeft(3, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2240  4
+        valores[1] == valores[2] && valores[1] && valores[3] && !valores[4] ? verificacaoLeft(4, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2248  5
+        valores[1] == valores[2] && valores[1] && valores[3] && valores[4] && valores[3] != valores[4] ? verificacaoLeft(5, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //0022  6
+        valores[3] == valores[4] && valores[3] && !valores[1] && !valores[2] ? verificacaoLeft(6, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0422  7
+        valores[3] == valores[4] && valores[3] && !valores[1] && valores[2] ? verificacaoLeft(7, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //4022  8
+        valores[3] == valores[4] && valores[3] && valores[1] && !valores[2] ? verificacaoLeft(8, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //4822  9
+        valores[3] == valores[4] && valores[3] && valores[1] && valores[2] && valores[1] != valores[2] ? verificacaoLeft(9, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //0220  10
+        valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoLeft(10, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //4220  11
+        valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoLeft(11, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0224  12
+        valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoLeft(12, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //4224  13
+        valores[2] == valores[3] && valores[2] && valores[1] && valores[4] ? verificacaoLeft(13, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
 
 
+        //0202  14
+        valores[2] == valores[4] && valores[2] && !valores[1] && !valores[3] ? verificacaoLeft(14, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //4202  15
+        valores[2] == valores[4] && valores[2] && valores[1] && !valores[3] ? verificacaoLeft(15, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0242  16
+        valores[2] == valores[4] && valores[2] && !valores[1] && valores[3] ? verificacaoLeft(16, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //2020  17
+        valores[1] == valores[3] && valores[1] && !valores[2] && !valores[4] ? verificacaoLeft(17, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2024  18
+        valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoLeft(18, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2420  19
+        valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoLeft(19, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //2002  20
+        valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoLeft(20, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2402  21
+        valores[1] == valores[4] && valores[1] && valores[2] && !valores[3] ? verificacaoLeft(21, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2042  22
+        valores[1] == valores[4] && valores[1] && !valores[2] && valores[3] ? verificacaoLeft(22, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
 
+        //0002  23
+        !valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoLeft(23, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0020  24
+        !valores[1] && !valores[2] && valores[3] && !valores[4] ? verificacaoLeft(24, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0200  25
+        !valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoLeft(25, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2000  26
+        valores[1] && !valores[2] && !valores[3] && !valores[4] ? verificacaoLeft(26, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //0024  27
+        valores[3] != valores[4] && valores[3] && valores[4] && !valores[1] && !valores[2] ? verificacaoLeft(27, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0204  28
+        valores[2] != valores[4] && !valores[1] && !valores[3] && valores[2] && valores[4] ? verificacaoLeft(28, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2004  29
+        valores[1] != valores[4] && !valores[1] && !valores[3] && valores[1] && valores[4] ? verificacaoLeft(29, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //0420  30
+        valores[2] != valores[3] && valores[2] && valores[3] && !valores[1] && !valores[4] ? verificacaoLeft(30, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //4020  31
+        valores[1] != valores[3] && valores[1] && valores[3] && !valores[2] && !valores[4] ? verificacaoLeft(31, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //4200  32
+        valores[1] != valores[2] && valores[1] && valores[2] && !valores[3] && !valores[4] ? verificacaoLeft(32, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        
+        //4208  33
+        valores[1] != valores[2] && valores[2] != valores[4] && valores[1]  && valores[2] && valores[4] && !valores[3] ? verificacaoLeft(33, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2004  34
+        valores[1] != valores[4] && valores[1] && !valores[2] && !valores[3] && valores[4] ? verificacaoLeft(34, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //0248  35
+        valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoLeft(35, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2480 36
+        valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoLeft(36, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        //2048 37
+        valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoLeft(37, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
 
-  function right(){
-    if($scope.game.column1.value1 != 2048){
-    $scope.game.column1.value1 *= 2;
-    } else {
-      alert('Você ganhou')
-    }
+    });
     color();
   }
-  
-  function verificacaoLeft(element, collumn, valor1, valor2){
-  console.log(element, collumn, valor1, valor2);
-    switch(element){
+
+  function verificacaoUp(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
+    switch(keyValue){
       case 1:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = valor2*2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = posicao3*2;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 2:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = null;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 3:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = valor2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 4:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = valor2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 5:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = null;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 6:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = valor2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao3*2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 7:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = null;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao2;
+        $scope.game.data[collumn[2]][value] = posicao3*2;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 8:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = null;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao3*2;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 9:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = valor2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao3*2;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 10:
-        $scope.game[collumn]['value1'] = valor2;
-        $scope.game[collumn]['value2'] = valor1*2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao2*2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 11:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = null;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2*2;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 12:
-        $scope.game[collumn]['value1'] = valor1*2;
-        $scope.game[collumn]['value2'] = valor2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao2*2;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 13:
-        $scope.game[collumn]['value1'] = valor2;
-        $scope.game[collumn]['value2'] = valor1*2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2*2;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 14:
-          $scope.game[collumn]['value1'] = valor1*2;
-          $scope.game[collumn]['value2'] = null;
-          $scope.game[collumn]['value3'] = null;
-          $scope.game[collumn]['value4'] = null;
-          break;
+        $scope.game.data[collumn[1]][value] = posicao2*2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 15:
-        $scope.game[collumn]['value1'] = valor2;
-        $scope.game[collumn]['value2'] = valor1*2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2*2;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
       case 16:
-        $scope.game[collumn]['value1'] = valor2;
-        $scope.game[collumn]['value2'] = valor1*2;
-        $scope.game[collumn]['value3'] = null;
-        $scope.game[collumn]['value4'] = null;
-        break;
+        $scope.game.data[collumn[1]][value] = posicao2;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 17:
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 18:
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 19:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 20:
+        $scope.game.data[collumn[1]][value] = posicao1*2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 21:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 22:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 23:
+        $scope.game.data[collumn[1]][value] = posicao4;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 24:
+        $scope.game.data[collumn[1]][value] = posicao3;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 25:
+        $scope.game.data[collumn[1]][value] = posicao2;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 26:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 27:
+        $scope.game.data[collumn[1]][value] = posicao3;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 28:
+        $scope.game.data[collumn[1]][value] = posicao2;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 29:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 30:
+        $scope.game.data[collumn[1]][value] = posicao2;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 31:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 32:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 33:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 34:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao4;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 35:
+        $scope.game.data[collumn[1]][value] = posicao2;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 36:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+      case 37:
+        $scope.game.data[collumn[1]][value] = posicao1;
+        $scope.game.data[collumn[2]][value] = posicao3;
+        $scope.game.data[collumn[3]][value] = posicao4;
+        $scope.game.data[collumn[4]][value] = null;
+      break;
+    
+    }
+  }
+
+  function verificacaoDown(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
+    switch(keyValue){
+      case 1:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1*2;
+        $scope.game.data[collumn[4]][value] = posicao3*2;
+      break;
+      case 2:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao1*2;
+      break;
+      case 3:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1*2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 4:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1*2;
+        $scope.game.data[collumn[4]][value] = posicao3;
+      break;
+      case 5:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1*2;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 6:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao3*2;
+      break;
+      case 7:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao3*2;
+      break;
+      case 8:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao3*2;
+      break;
+      case 9:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao3*2;
+      break;
+      case 10:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao2*2;
+      break;
+      case 11:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao2*2;
+      break;
+      case 12:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao2*2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 13:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao2*2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 14:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao2*2;
+      break;
+      case 15:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao2*2;
+      break;
+      case 16:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 17:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao1*2;
+      break;
+      case 18:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1*2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 19:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao3;
+      break;
+      case 20:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao1*2;
+      break;
+      case 21:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 22:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 23:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 24:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao3;
+      break;
+      case 25:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao2;
+      break;
+      case 26:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = null;
+        $scope.game.data[collumn[4]][value] = posicao1;
+      break;
+      case 27:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 28:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 29:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 30:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao3;
+      break;
+      case 31:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao3;
+      break;
+      case 32:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao2;
+      break;
+      case 33:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 34:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = null;
+        $scope.game.data[collumn[3]][value] = posicao1;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 35:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao2;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+      case 36:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao2;
+        $scope.game.data[collumn[4]][value] = posicao3;
+      break;
+      case 37:
+        $scope.game.data[collumn[1]][value] = null;
+        $scope.game.data[collumn[2]][value] = posicao1;
+        $scope.game.data[collumn[3]][value] = posicao3;
+        $scope.game.data[collumn[4]][value] = posicao4;
+      break;
+    
+    }
+  }
+
+  function verificacaoRight(keyValue, collumn, posicao1, posicao2, posicao3, posicao4){
+    console.log(keyValue);
+    
+    switch(keyValue){
+      case 1:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1*2;
+        $scope.game.data[collumn]['value4'] = posicao3*2;
+      break;
+      case 2:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao1*2;
+      break;
+      case 3:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1*2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 4:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1*2;
+        $scope.game.data[collumn]['value4'] = posicao3;
+      break;
+      case 5:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1*2;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 6:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao3*2;
+      break;
+      case 7:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao3*2;
+      break;
+      case 8:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao3*2;
+      break;
+      case 9:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao3*2;
+      break;
+      case 10:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao2*2;
+      break;
+      case 11:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao2*2;
+      break;
+      case 12:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao2*2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 13:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2*2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 14:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao2*2;
+      break;
+      case 15:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao2*2;
+      break;
+      case 16:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 17:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao1*2;
+      break;
+      case 18:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1*2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 19:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao3;
+      break;
+      case 20:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao1*2;
+      break;
+      case 21:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 22:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 23:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 24:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao3;
+      break;
+      case 25:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao2;
+      break;
+      case 26:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = posicao1;
+      break;
+      case 27:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 28:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 29:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 30:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao3;
+      break;
+      case 31:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao3;
+      break;
+      case 32:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao2;
+      break;
+      case 33:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 34:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = posicao1;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 35:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 36:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao3;
+      break;
+      case 36:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao2;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+      case 37:
+        $scope.game.data[collumn]['value1'] = null;
+        $scope.game.data[collumn]['value2'] = posicao1;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = posicao4;
+      break;
+    
+    }
+  }
+
+  function verificacaoLeft(keyValue, collumn, posicao1, posicao2,posicao3,posicao4){
+    switch(keyValue){
+      case 1:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = posicao3*2;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 2:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 3:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 4:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 5:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 6:
+        $scope.game.data[collumn]['value1'] = posicao3*2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 7:
+        $scope.game.data[collumn]['value1'] = posicao2;
+        $scope.game.data[collumn]['value2'] = posicao3*2;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 8:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao3*2;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 9:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao3*2;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 10:
+        $scope.game.data[collumn]['value1'] = posicao2*2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 11:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2*2;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 12:
+        $scope.game.data[collumn]['value1'] = posicao2*2;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 13:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2*2;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 14:
+        $scope.game.data[collumn]['value1'] = posicao2*2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 15:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2*2;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 16:
+        $scope.game.data[collumn]['value1'] = posicao2;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 17:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 18:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 19:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 20:
+        $scope.game.data[collumn]['value1'] = posicao1*2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 21:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 22:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 23:
+        $scope.game.data[collumn]['value1'] = posicao4;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 24:
+        $scope.game.data[collumn]['value1'] = posicao3;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 25:
+        $scope.game.data[collumn]['value1'] = posicao2;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 26:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = null;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 27:
+        $scope.game.data[collumn]['value1'] = posicao3;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 28:
+        $scope.game.data[collumn]['value1'] = posicao2;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 29:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 30:
+        $scope.game.data[collumn]['value1'] = posicao2;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 31:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 32:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 33:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 34:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao4;
+        $scope.game.data[collumn]['value3'] = null;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 35:
+        $scope.game.data[collumn]['value1'] = posicao2;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 36:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao2;
+        $scope.game.data[collumn]['value3'] = posicao3;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+      case 37:
+        $scope.game.data[collumn]['value1'] = posicao1;
+        $scope.game.data[collumn]['value2'] = posicao3;
+        $scope.game.data[collumn]['value3'] = posicao4;
+        $scope.game.data[collumn]['value4'] = null;
+      break;
+    }
+  }
+
+
+  function gameOver(){
+    $scope.game.data['column1']['value1'] && $scope.game.data['column1']['value2'] && $scope.game.data['column1']['value3'] && $scope.game.data['column1']['value4'] &&
+    $scope.game.data['column2']['value1'] && $scope.game.data['column2']['value2'] && $scope.game.data['column2']['value3'] && $scope.game.data['column2']['value4'] &&
+    $scope.game.data['column3']['value1'] && $scope.game.data['column3']['value2'] && $scope.game.data['column3']['value3'] && $scope.game.data['column3']['value4'] &&
+    $scope.game.data['column4']['value1'] && $scope.game.data['column4']['value2'] && $scope.game.data['column4']['value3'] && $scope.game.data['column4']['value4'] &&
+
+    $scope.game.data['column1']['value1'] != $scope.game.data['column1']['value2'] && $scope.game.data['column1']['value2'] != $scope.game.data['column1']['value3'] && $scope.game.data['column1']['value3'] != $scope.game.data['column1']['value4'] &&
+    $scope.game.data['column2']['value1'] != $scope.game.data['column2']['value2'] && $scope.game.data['column2']['value2'] != $scope.game.data['column2']['value3'] && $scope.game.data['column2']['value3'] != $scope.game.data['column2']['value4'] &&
+    $scope.game.data['column3']['value1'] != $scope.game.data['column3']['value2'] && $scope.game.data['column3']['value2'] != $scope.game.data['column3']['value3'] && $scope.game.data['column3']['value3'] != $scope.game.data['column3']['value4'] &&
+    $scope.game.data['column4']['value1'] != $scope.game.data['column4']['value2'] && $scope.game.data['column4']['value2'] != $scope.game.data['column4']['value3'] && $scope.game.data['column4']['value3'] != $scope.game.data['column4']['value4'] &&
+
+    $scope.game.data['column1']['value1'] != $scope.game.data['column2']['value1'] && $scope.game.data['column2']['value1'] != $scope.game.data['column3']['value1'] && $scope.game.data['column3']['value1'] != $scope.game.data['column4']['value1'] &&
+    $scope.game.data['column1']['value2'] != $scope.game.data['column2']['value2'] && $scope.game.data['column2']['value2'] != $scope.game.data['column3']['value2'] && $scope.game.data['column3']['value2'] != $scope.game.data['column4']['value2'] &&
+    $scope.game.data['column1']['value3'] != $scope.game.data['column2']['value3'] && $scope.game.data['column2']['value3'] != $scope.game.data['column3']['value3'] && $scope.game.data['column3']['value3'] != $scope.game.data['column4']['value3'] &&
+    $scope.game.data['column1']['value4'] != $scope.game.data['column2']['value4'] && $scope.game.data['column2']['value4'] != $scope.game.data['column3']['value4'] && $scope.game.data['column3']['value4'] != $scope.game.data['column4']['value4']
+     ? alert('Jogo Acabou') : false;
+  }
+    
+
+  function random(){
+    let ramdomCollumn = [];
+    let ramdomKey = [];
+    let contador = 0;
+    let numberRandom;
+    angular.forEach($scope.game.data, function(obj, collumn){
+      angular.forEach($scope.game.data[collumn], function(value, key){
+        if(value == null){
+          ramdomCollumn[contador] = collumn;
+          ramdomKey[contador] = key;
+          contador++;
+        }
+      });
+    });
+    if(contador){
+      numberRandom = Math.floor(Math.random() * ramdomCollumn.length);
+      $scope.game.data[ramdomCollumn[numberRandom]][ramdomKey[numberRandom]] = 2;
+      color();
     }
   }
 
   function color(){
-    angular.forEach($scope.game, function(obj, collumn){
-      angular.forEach($scope.game[collumn], function(element, value){
+    angular.forEach($scope.game.data, function(obj, collumn){
+      angular.forEach($scope.game.data[collumn], function(element, value){
         switch(element){
           case 2:
-            $scope.color[collumn][value] = 'Gold';
+            $scope.game.color[collumn][value] = 'Gold';
             break;
           case 4:
-            $scope.color[collumn][value] = 'DarkOrange';
+            $scope.game.color[collumn][value] = 'DarkOrange';
             break;
           case 8:
-            $scope.color[collumn][value] = 'DodgerBlue';
+            $scope.game.color[collumn][value] = 'DodgerBlue';
             break;
           case 16:
-            $scope.color[collumn][value] = 'DeepSkyBlue';
+            $scope.game.color[collumn][value] = 'DeepSkyBlue';
             break;
           case 32:
-            $scope.color[collumn][value] = 'DeepPink';
+            $scope.game.color[collumn][value] = 'DeepPink';
             break;
           case 64:
-            $scope.color[collumn][value] = 'LawnGreen';
+            $scope.game.color[collumn][value] = 'LawnGreen';
             break;
           case 128:
-            $scope.color[collumn][value] = 'Orchid';
+            $scope.game.color[collumn][value] = 'Orchid';
             break;
           case 256:
-            $scope.color[collumn][value] = 'MediumPurple';
+            $scope.game.color[collumn][value] = 'MediumPurple';
             break;
           case 512:
-            $scope.color[collumn][value] = 'DeepPink';
+            $scope.game.color[collumn][value] = 'DeepPink';
             break;
           case 1024:
-            $scope.color[collumn][value] = 'DodgerBlue';
+            $scope.game.color[collumn][value] = 'DodgerBlue';
             break;
           case 2048:
-            $scope.color[collumn][value] = 'BlueViolet';
+            $scope.game.color[collumn][value] = 'BlueViolet';
             break;
           default:
-            $scope.color[collumn][value] = 'Gray';
+            $scope.game.color[collumn][value] = 'Gray';
             break;
         }
       });
