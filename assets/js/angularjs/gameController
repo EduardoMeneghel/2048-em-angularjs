@@ -144,7 +144,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //0220  10
       valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoUp(10, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //4220  11
-      valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoUp(11, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      valores[2] == valores[3] && valores[2] && valores[1] && valores[1] != valores[2] && !valores[4] ? verificacaoUp(11, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //0224  12
       valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoUp(12, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //4224  13
@@ -163,7 +163,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //2024  18
       valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoUp(18, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //2420  19
-      valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoUp(19, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      valores[1] == valores[3] && valores[1] && valores[2] && valores[1] != valores[2] && !valores[4] ? verificacaoUp(19, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       
       //2002  20
       valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoUp(20, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
@@ -203,7 +203,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //0248 35
       valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoUp(35, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //2480 36
-      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoUp(36, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] != valores[3] &&  valores[1] && valores[2] && valores[3] ? verificacaoUp(36, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //2048 37
       valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoUp(37, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
 
@@ -260,7 +260,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //0220  10
       valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoDown(10, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //4220  11
-      valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoDown(11, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      valores[2] == valores[3] && valores[2] && valores[1] && valores[1] != valores[2] &&  !valores[4] ? verificacaoDown(11, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //0224  12
       valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoDown(12, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //4224  13
@@ -279,7 +279,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //2024  18
       valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoDown(18, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //2420  19
-      valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoDown(19, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      valores[1] == valores[3] && valores[1] && valores[2] && valores[1] != valores[2] && !valores[4] ? verificacaoDown(19, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       
       //2002  20
       valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoDown(20, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
@@ -319,7 +319,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //0248 35
       valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoDown(35, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //2480 36
-      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoDown(36, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
+      valores[1] != valores[2] && valores[2] != valores[3] && valores[1] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoDown(36, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
       //2048 37
       valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoDown(37, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
 
@@ -366,7 +366,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //0220  10
       valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoRight(10, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       //4220  11
-      valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoRight(11, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      valores[2] == valores[3] && valores[2] && valores[1] && valores[1] != valores[2] && !valores[4] ? verificacaoRight(11, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       //0224  12
       valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoRight(12, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       //4224  13
@@ -385,7 +385,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //2024  18
       valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoRight(18, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       //2420  19
-      valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoRight(19, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      valores[1] == valores[3] && valores[1] && valores[2]  && valores[1] != valores[2] && !valores[4] ? verificacaoRight(19, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       
       //2002  20
       valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoRight(20, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
@@ -425,7 +425,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       //0248 35
       valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoRight(35, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       //2480 36
-      valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoRight(36, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+      valores[1] != valores[2] && valores[2] != valores[3] && valores[1] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoRight(36, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
       //2048 37
       valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoRight(37, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
 
@@ -472,7 +472,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         //0220  10
         valores[2] == valores[3] && valores[2] && !valores[1] && !valores[4] ? verificacaoLeft(10, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         //4220  11
-        valores[2] == valores[3] && valores[2] && valores[1] && !valores[4] ? verificacaoLeft(11, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        valores[2] == valores[3] && valores[2] && valores[1] && valores[1] != valores[2] && !valores[4] ? verificacaoLeft(11, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         //0224  12
         valores[2] == valores[3] && valores[2] && !valores[1] && valores[4] ? verificacaoLeft(12, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         //4224  13
@@ -491,7 +491,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         //2024  18
         valores[1] == valores[3] && valores[1] && !valores[2] && valores[4] ? verificacaoLeft(18, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         //2420  19
-        valores[1] == valores[3] && valores[1] && valores[2] && !valores[4] ? verificacaoLeft(19, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        valores[1] == valores[3] && valores[1] && valores[2] && valores[1] != valores[2] && !valores[4] ? verificacaoLeft(19, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         
         //2002  20
         valores[1] == valores[4] && valores[1] && !valores[2] && !valores[3] ? verificacaoLeft(20, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
@@ -531,7 +531,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         //0248  35
         valores[2] != valores[3] && valores[3] != valores[4] && !valores[1] && valores[2] && valores[3] && valores[4] ? verificacaoLeft(35, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         //2480 36
-        valores[1] != valores[2] && valores[2] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoLeft(36, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
+        valores[1] != valores[2] && valores[2] != valores[3] && valores[1] != valores[3] && !valores[4] && valores[1] && valores[2] && valores[3] ? verificacaoLeft(36, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
         //2048 37
         valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoLeft(37, collumn, valores[1], valores[2], valores[3], valores[4])  : false;
 
@@ -540,6 +540,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoUp(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
+    console.log(1, keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn[1]][value] = posicao1*2;
@@ -768,6 +769,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoDown(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
+    console.log(2,keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn[1]][value] = null;
@@ -996,7 +998,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoRight(keyValue, collumn, posicao1, posicao2, posicao3, posicao4){
-    console.log(keyValue);
+    console.log(3, keyValue, collumn, posicao1, posicao2, posicao3, posicao4);
     
     switch(keyValue){
       case 1:
@@ -1215,12 +1217,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         $scope.game.data[collumn]['value3'] = posicao2;
         $scope.game.data[collumn]['value4'] = posicao3;
       break;
-      case 36:
-        $scope.game.data[collumn]['value1'] = null;
-        $scope.game.data[collumn]['value2'] = posicao1;
-        $scope.game.data[collumn]['value3'] = posicao2;
-        $scope.game.data[collumn]['value4'] = posicao4;
-      break;
       case 37:
         $scope.game.data[collumn]['value1'] = null;
         $scope.game.data[collumn]['value2'] = posicao1;
@@ -1232,6 +1228,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoLeft(keyValue, collumn, posicao1, posicao2,posicao3,posicao4){
+    console.log(keyValue, collumn, posicao1, posicao2, posicao3, posicao4);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn]['value1'] = posicao1*2;
