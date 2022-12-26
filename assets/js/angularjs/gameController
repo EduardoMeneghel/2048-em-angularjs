@@ -1496,6 +1496,65 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
     }
   }
 
+  $scope.reset = function() {
+    console.log('sadasda');
+    $scope.game = {
+      "data" : {
+        "column1": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+        "column2": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+        "column3": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+        "column4": {
+          value1:null,
+          value2:null,
+          value3:null,
+          value4:null
+        },
+      },
+      "color" : {
+          "column1": {
+            value1:null,
+            value2:null,
+            value3:null,
+            value4:null
+          },
+          "column2": {
+            value1:null,
+            value2:null,
+            value3:null,
+            value4:null
+          },
+          "column3": {
+            value1:null,
+            value2:null,
+            value3:null,
+            value4:null
+          },
+          "column4": {
+            value1:null,
+            value2:null,
+            value3:null,
+            value4:null
+        },
+      }
+    }
+    return true;
+  }
+
   function color(){
     angular.forEach($scope.game.data, function(obj, collumn){
       angular.forEach($scope.game.data[collumn], function(element, value){
