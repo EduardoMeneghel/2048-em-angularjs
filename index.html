@@ -10,12 +10,9 @@
     <script src="./assets/js/angularjs/gameController"></script>
   </head>
   <body ng-controller="ngGameController" ng-keydown="keyPress($event)">
-    <header class="bg-dark">
-      <img src="./assets/images/{{user.image}}" class="img-sl b-radium-50">
-    </header>
     <div class="container">
-      <h1 class="my-5" style="text-align: center;">Olá {{user.name}}!</h1>
-      <main class="game">
+      <h1 class="my-5 font">2048</h1>
+      <main class="game mt-5">
         <div class="row">
           <div class="col square" style="background-color: {{game.color.column1.value1}};">
             <p class="value">{{game.data.column1.value1}}</p>

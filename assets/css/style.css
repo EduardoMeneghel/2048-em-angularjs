@@ -2,17 +2,36 @@ header{
     width: 100%;
     height: 100px;
 }
+
 header > img {
     position: absolute;
     right: 30px;
     top: 10px;
 }
 
+body{
+    background-color: beige;
+}
+
 .square{
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: white;
     width: 100px;
     height: 100px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
     background-color: gray;
-    margin: 1px;
+}
+
+.font{
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    font-size: 6rem;
+    color: white;
+    -webkit-text-stroke: 2px darkgray;
 }
 
 .value{
