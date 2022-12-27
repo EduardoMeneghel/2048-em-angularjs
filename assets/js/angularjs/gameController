@@ -16,7 +16,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         value1:2,
         value2:null,
         value3:2,
-        value4:4
+        value4:2
       },
       "column3": {
         value1:2,
@@ -57,14 +57,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
           value4:null
         },
       }
-  };
-
-  $scope.user = {
-    id:"1",
-    login:"Eduardo",
-    senha:"123",
-    name:"Eduardo Pedro Meneghel",
-    image:"foto.png",
   };
 
   color();
