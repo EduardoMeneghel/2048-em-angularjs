@@ -62,7 +62,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
   let valores = [];
 
-  oldData = angular.copy($scope.game);
   $scope.keyPress = function(keyEvent) {
     switch(keyEvent.which){
       case 38:
@@ -81,6 +80,7 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   $scope.up = function(){
+    oldData = angular.copy($scope.game);
     let collumns = [];
     let positions = [];
     let contadorCollumns = 1;
@@ -193,10 +193,13 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       contadorPosition++;
     })
     gameOver();
-    random();
+    if(JSON.stringify(oldData) != JSON.stringify($scope.game)){
+      random();
+    }
   }
 
   $scope.down = function(){
+    oldData = angular.copy($scope.game);
     let collumns = [];
     let positions = [];
     let contadorCollumns = 1;
@@ -310,10 +313,13 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       contadorPosition++;
     })
     gameOver();
-    random();
+    if(JSON.stringify(oldData) != JSON.stringify($scope.game)){
+      random();
+    }
   }
 
   $scope.right = function(){
+    oldData = angular.copy($scope.game);
     let contador;
     angular.forEach($scope.game.data, function(obj, collumn){
       valores = [];
@@ -417,10 +423,13 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
     });
     gameOver();
-    random();
+    if(JSON.stringify(oldData) != JSON.stringify($scope.game)){
+      random();
+    }
   }
  
   $scope.left = function(){
+    oldData = angular.copy($scope.game);
       let contador = 1;
     angular.forEach($scope.game.data, function(obj, collumn){
       valores = [];
@@ -523,7 +532,9 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
     });
     gameOver();
-    random();
+    if(JSON.stringify(oldData) != JSON.stringify($scope.game)){
+      random();
+    }
   }
 
   function verificacaoUp(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
@@ -1458,7 +1469,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
     
 
   function random(){
-    if(JSON.stringify(oldData) != JSON.stringify($scope.game)){
       let ramdomCollumn = [];
       let ramdomKey = [];
       let contador = 0;
@@ -1478,7 +1488,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         color()
       }
       color()
-    }
   }
 
   $scope.reset = function() {
@@ -1536,7 +1545,8 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
         },
       }
     }
-    return true;
+    random();
+    random();
   }
 
   function color(){
