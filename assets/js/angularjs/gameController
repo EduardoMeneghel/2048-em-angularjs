@@ -62,8 +62,8 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
   let valores = [];
 
+  oldData = angular.copy($scope.game);
   $scope.keyPress = function(keyEvent) {
-    oldData = angular.copy($scope.game);
     switch(keyEvent.which){
       case 38:
         $scope.up();
@@ -983,7 +983,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoRight(keyValue, collumn, posicao1, posicao2, posicao3, posicao4){
-    console.log(keyValue, collumn, posicao1, posicao2, posicao3, posicao4);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn]['value1'] = null;
