@@ -1,5 +1,4 @@
 (function(angular) {
-  'use strict';
 angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
   
@@ -532,7 +531,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoUp(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
-    console.log(1, keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn[1]][value] = posicao1*2;
@@ -761,7 +759,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoDown(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
-    console.log(2,keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn[1]][value] = null;
@@ -990,8 +987,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoRight(keyValue, collumn, posicao1, posicao2, posicao3, posicao4){
-    console.log(3, keyValue, collumn, posicao1, posicao2, posicao3, posicao4);
-    
     switch(keyValue){
       case 1:
         $scope.game.data[collumn]['value1'] = null;
@@ -1220,7 +1215,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   function verificacaoLeft(keyValue, collumn, posicao1, posicao2,posicao3,posicao4){
-    console.log(keyValue, collumn, posicao1, posicao2, posicao3, posicao4);
     switch(keyValue){
       case 1:
         $scope.game.data[collumn]['value1'] = posicao1*2;
@@ -1489,7 +1483,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
   }
 
   $scope.reset = function() {
-    console.log('sadasda');
     $scope.game = {
       "data" : {
         "column1": {

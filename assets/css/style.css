@@ -10,7 +10,8 @@ header > img {
 }
 
 body{
-    background-color: beige;
+    text-align: center;
+    background-color: currentColor;
 }
 
 .square{
