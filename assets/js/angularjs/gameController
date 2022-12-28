@@ -191,7 +191,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoUp(37, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
 
       contadorPosition++;
-      color();
     })
     gameOver();
     random();
@@ -309,7 +308,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       valores[1] != valores[3] && valores[3] != valores[4] && !valores[2] && valores[1] && valores[3] && valores[4] ? verificacaoDown(37, collumns, valores[1], valores[2], valores[3], valores[4], positions[contadorPosition])  : false;
 
       contadorPosition++;
-      color();
     })
     gameOver();
     random();
@@ -420,7 +418,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
     });
     gameOver();
     random();
-    color();
   }
  
   $scope.left = function(){
@@ -527,7 +524,6 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
     });
     gameOver();
     random();
-    color();
   }
 
   function verificacaoUp(keyValue, collumn, posicao1, posicao2, posicao3, posicao4, value){
@@ -1480,8 +1476,9 @@ angular.module('ngGame', []).controller('ngGameController', function($scope) {
       if(contador){
         numberRandom = Math.floor(Math.random() * ramdomCollumn.length);
         $scope.game.data[ramdomCollumn[numberRandom]][ramdomKey[numberRandom]] = 2;
-        color();
+        color()
       }
+      color()
     }
   }
 
