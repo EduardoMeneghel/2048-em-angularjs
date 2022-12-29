@@ -14,72 +14,62 @@
       <h1 class="my-5 font">2048</h1>
       <main class="game mt-5">
         <div class="row">
-          <div class="col square" style="background-color: {{game.color.column1.value1}};">
-            <p class="value">{{game.data.column1.value1}}</p>
+          <div class="col square" style="background-color: {{color[0][0]}};">
+            <p class="">{{game[0][0]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column1.value2}};">
-            <p class="value">{{game.data.column1.value2}}</p>
+          <div class="col square" style="background-color: {{color[0][1]}};">
+            <p class="">{{game[0][1]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column1.value3}};">
-            <p class="value">{{game.data.column1.value3}}</p>
+          <div class="col square" style="background-color: {{color[0][2]}};">
+            <p class="">{{game[0][2]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column1.value4}};">
-            <p class="value">{{game.data.column1.value4}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col square" style="background-color: {{game.color.column2.value1}};">
-            <p class="value">{{game.data.column2.value1}}</p>
-          </div>
-          <div class="col square" style="background-color: {{game.color.column2.value2}};">
-            <p class="value">{{game.data.column2.value2}}</p>
-          </div>
-          <div class="col square" style="background-color: {{game.color.column2.value3}};">
-            <p class="value">{{game.data.column2.value3}}</p>
-          </div>
-          <div class="col square" style="background-color: {{game.color.column2.value4}};">
-            <p class="value">{{game.data.column2.value4}}</p>
+          <div class="col square" style="background-color: {{color[0][3]}};">
+            <p class="">{{game[0][3]}}</p>
           </div>
         </div>
         <div class="row">
-          <div class="col square" style="background-color: {{game.color.column3.value1}};">
-            <p class="value">{{game.data.column3.value1}}</p>
+          <div class="col square" style="background-color: {{color[1][0]}};">
+            <p class="">{{game[1][0]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column3.value2}};">
-            <p class="value">{{game.data.column3.value2}}</p>
+          <div class="col square" style="background-color: {{color[1][1]}};">
+            <p class="">{{game[1][1]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column3.value3}};">
-            <p class="value">{{game.data.column3.value3}}</p>
+          <div class="col square" style="background-color: {{color[1][2]}};">
+            <p class="">{{game[1][2]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column3.value4}};">
-            <p class="value">{{game.data.column3.value4}}</p>
+          <div class="col square" style="background-color: {{color[1][3]}};">
+            <p class="">{{game[1][3]}}</p>
           </div>
         </div>
         <div class="row">
-          <div class="col square" style="background-color: {{game.color.column4.value1}};">
-            <p class="value">{{game.data.column4.value1}}</p>
+          <div class="col square" style="background-color: {{color[2][0]}};">
+            <p class="">{{game[2][0]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column4.value2}};">
-            <p class="value">{{game.data.column4.value2}}</p>
+          <div class="col square" style="background-color: {{color[2][1]}};">
+            <p class="">{{game[2][1]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column4.value3}};">
-            <p class="value">{{game.data.column4.value3}}</p>
+          <div class="col square" style="background-color: {{color[2][2]}};">
+            <p class="">{{game[2][2]}}</p>
           </div>
-          <div class="col square" style="background-color: {{game.color.column4.value4}};">
-            <p class="value">{{game.data.column4.value4}}</p>
+          <div class="col square" style="background-color: {{color[2][3]}};">
+            <p class="">{{game[2][3]}}</p>
           </div>
         </div>
-      </main>
-      <button type="button" class="btn btn-dark mt-3" style="width: 430px" ng-click="reset()" >Reset</button>
-      <div class="mt-5">
-          <button class="key" ng-click="up()">C</button>
-      </div>
-      <div>
-          <button class="key" ng-click="left()">E</button>
-          <button class="key" ng-click="down()">B</button>
-          <button class="key" ng-click="right()">D</button>
-      </div>
-      
+        <div class="row">
+          <div class="col square" style="background-color: {{color[3][0]}};">
+            <p class="">{{game[3][0]}}</p>
+          </div>
+          <div class="col square" style="background-color: {{color[3][1]}};">
+            <p class="">{{game[3][1]}}</p>
+          </div>
+          <div class="col square" style="background-color: {{color[3][2]}};">
+            <p class="">{{game[3][2]}}</p>
+          </div>
+          <div class="col square" style="background-color: {{color[3][3]}};">
+            <p class="">{{game[3][3]}}</p>
+          </div>
+        </div>
+      </main>      
     </div>
   </body>
 </html>
