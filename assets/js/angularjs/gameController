@@ -1,182 +1,280 @@
 (function(angular) {
-angular.module('ngGame', []).controller('ngGameController', function($scope) {
+  angular.module('ngGame', []).controller('ngGameController', function($scope) {
 
-  $scope.game = [
-    [2, 2, 4, 2],
-    [8, 8, 8, 2],
-    [2, 4, 2, 4],
-    [null, null, null, 4]
-  ];
+    $scope.game = [
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null]
+    ];
 
-  $scope.color = [
-    [2, null, 2, null],
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null]
-  ];
+    $scope.color = [
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null],
+      [null, null, null, null]
+    ];
 
-  color()
-
-  $scope.keyPress = function(keyEvent) {
-    switch(keyEvent.which){
-      case 38:
-        $scope.up();
-      break;
-      case 40:
-        $scope.down();
-      break;
-      case 37:
-        $scope.left();
-      break;
-      case 39:
-        $scope.right();
-      break;
-    }
-  }
-
-  $scope.left = function(){
-    for(var i = 0; i < $scope.game.length; i++) {
-      let positionAnterior = null;
-      let novoArray = [];
-      let posicaoAtual;
-      for(var j = 0; j < $scope.game[i].length; j++) {
-        posicaoAtual = $scope.game[i][j];
-        if(!posicaoAtual && positionAnterior && j == 3){
-            novoArray.push(positionAnterior);
-            positionAnterior = null;
-        }
-        if(posicaoAtual && !positionAnterior){
-          if(j == 3){
-            novoArray.push(posicaoAtual);
-          }else{
-            positionAnterior = posicaoAtual;
-          }
-        }else if(posicaoAtual && positionAnterior){
-          if(posicaoAtual == positionAnterior){
-            novoArray.push(positionAnterior*2);
-            positionAnterior = null;
-          }else if(j == 3 &&  positionAnterior && posicaoAtual){
-            novoArray.push(positionAnterior);
-            novoArray.push(posicaoAtual);
-          }else if(j == 3 &&  positionAnterior && !posicaoAtual){
-            novoArray.push(positionAnterior);
-          }else if(posicaoAtual != positionAnterior){
-            novoArray.push(positionAnterior);
-            positionAnterior = posicaoAtual;
-          }
-        }
-      }
-      for(var k = novoArray.length; k <= 3; k++) {
-        novoArray.push(null);
-      }
-      $scope.game[i] = novoArray;
-    }
     color()
-  }
 
-  $scope.up = function(){
-    for(var i = 0; i < $scope.game.length; i++) {
-      let positionAnterior = null;
-      let novoArray = [];
-      let posicaoAtual;
-      for(var j = 0; j < $scope.game[i].length; j++) {
-        posicaoAtual = $scope.game[j][i];
-        if(!posicaoAtual && positionAnterior && j == 3){
-            novoArray.push(positionAnterior);
-            positionAnterior = null;
-        }
-        if(posicaoAtual && !positionAnterior){
-          if(j == 3){
-            novoArray.push(posicaoAtual);
-          }else{
-            positionAnterior = posicaoAtual;
-          }
-        }else if(posicaoAtual && positionAnterior){
-          if(posicaoAtual == positionAnterior){
-            novoArray.push(positionAnterior*2);
-            positionAnterior = null;
-          }else if(j == 3 &&  positionAnterior && posicaoAtual){
-            novoArray.push(positionAnterior);
-            novoArray.push(posicaoAtual);
-          }else if(j == 3 &&  positionAnterior && !posicaoAtual){
-            novoArray.push(positionAnterior);
-          }else if(posicaoAtual != positionAnterior){
-            novoArray.push(positionAnterior);
-            positionAnterior = posicaoAtual;
-          }
-        }
+    $scope.keyPress = function(keyEvent) {
+      switch(keyEvent.which){
+        case 38:
+          $scope.keyUp();
+        break;
+        case 40:
+          $scope.keyDown();
+        break;
+        case 37:
+          $scope.keyLeft();
+        break;
+        case 39:
+          $scope.keyRight();
+        break;
       }
-      for(var k = novoArray.length; k <= 3; k++) {
-        if(novoArray[k][i] == null){
+    }
+
+    $scope.keyUp = function(){
+      arrayAntigo = angular.copy($scope.game);
+          $scope.up();
+          !igual(arrayAntigo) ? random() : false;
+          color();
+          setTimeout(fimDeJogo, 100);
+    }
+
+    $scope.keyDown = function(){
+      arrayAntigo = angular.copy($scope.game);
+          $scope.down();
+          !igual(arrayAntigo) ? random() : false;
+          color();
+          setTimeout(fimDeJogo, 100);
+    }
+
+    $scope.keyLeft = function(){
+      arrayAntigo = angular.copy($scope.game);
+          $scope.left();
+          !igual(arrayAntigo) ? random() : false;
+          color();
+          setTimeout(fimDeJogo, 100);
+    }
+
+    $scope.keyRight = function(){
+      arrayAntigo = angular.copy($scope.game);
+          $scope.right();
+          !igual(arrayAntigo) ? random() : false;
+          color();
+          setTimeout(fimDeJogo, 100);
+    }
+
+
+    $scope.left = function(){
+      for(var i = 0; i < $scope.game.length; i++) {
+        let positionAnterior = null;
+        let novoArray = [];
+        let posicaoAtual;
+        for(var j = 0; j < $scope.game[i].length; j++) {
+          posicaoAtual = $scope.game[i][j];
+          if(!posicaoAtual && positionAnterior && j == 3){
+              novoArray.push(positionAnterior);
+              positionAnterior = null;
+          }
+          if(posicaoAtual && !positionAnterior){
+            if(j == 3){
+              novoArray.push(posicaoAtual);
+            }else{
+              positionAnterior = posicaoAtual;
+            }
+          }else if(posicaoAtual && positionAnterior){
+            if(posicaoAtual == positionAnterior){
+              novoArray.push(positionAnterior*2);
+              positionAnterior = null;
+            }else if(j == 3 &&  positionAnterior && posicaoAtual){
+              novoArray.push(positionAnterior);
+              novoArray.push(posicaoAtual);
+            }else if(j == 3 &&  positionAnterior && !posicaoAtual){
+              novoArray.push(positionAnterior);
+            }else if(posicaoAtual != positionAnterior){
+              novoArray.push(positionAnterior);
+              positionAnterior = posicaoAtual;
+            }
+          }
+        }
+        for(var k = novoArray.length; k <= 3; k++) {
           novoArray.push(null);
         }
+        $scope.game[i] = novoArray;
       }
-      novoArrayonsole.log(novoArray)
-      $scope.game[0][i] = novoArray[0];
-      $scope.game[1][i] = novoArray[1];
-      $scope.game[2][i] = novoArray[2];
-      $scope.game[3][i] = novoArray[3];
     }
-    color()
-  }
 
-  $scope.right = function(){
-    reverseArray($scope.game)
-    $scope.left();
-    reverseArray($scope.game)
-    color();
-  }
-
-  function reverseArray(array){
-    array[0] = array[0].reverse();
-    array[1] = array[1].reverse();
-    array[2] = array[2].reverse();
-    array[3] = array[3].reverse();
-  }
-
-  function color(){
-    for(var i = 0; i < $scope.game.length; i++) {
-      for(var j = 0; j < $scope.game[i].length; j++) {
-        switch($scope.game[i][j]){
-          case 2:
-            $scope.color[i][j] = 'Gold';
-            break;
-          case 4:
-            $scope.color[i][j] = 'DarkOrange';
-            break;
-          case 8:
-            $scope.color[i][j] = 'DodgerBlue';
-            break;
-          case 16:
-            $scope.color[i][j] = 'DeepSkyBlue';
-            break;
-          case 32:
-            $scope.color[i][j] = 'DeepPink';
-            break;
-          case 64:
-            $scope.color[i][j] = 'LawnGreen';
-            break;
-          case 128:
-            $scope.color[i][j] = 'Orchid';
-            break;
-          case 256:
-            $scope.color[i][j] = 'MediumPurple';
-            break;
-          case 512:
-            $scope.color[i][j] = 'DeepPink';
-            break;
-          case 1024:
-            $scope.color[i][j] = 'DodgerBlue';
-            break;
-          case 2048:
-            $scope.color[i][j] = 'BlueViolet';
-            break;
-          default:
-            $scope.color[i][j] = 'Gray';
-            break;
+    $scope.up = function(){
+      for(var i = 0; i < $scope.game.length; i++) {
+        let positionAnterior = null;
+        let novoArray = [];
+        let posicaoAtual = null;
+        for(var j = 0; j < $scope.game[i].length; j++) {
+          posicaoAtual = $scope.game[j][i];
+          if(!posicaoAtual && positionAnterior && j == 3){
+              novoArray.push(positionAnterior);
+              positionAnterior = null;
+          }
+          if(posicaoAtual && !positionAnterior){
+            if(j == 3){
+              novoArray.push(posicaoAtual);
+            }else{
+              positionAnterior = posicaoAtual;
+            }
+          }else if(posicaoAtual && positionAnterior){
+            if(posicaoAtual == positionAnterior){
+              novoArray.push(positionAnterior*2);
+              positionAnterior = null;
+            }else if(j == 3 &&  positionAnterior && posicaoAtual){
+              novoArray.push(positionAnterior);
+              novoArray.push(posicaoAtual);
+            }else if(j == 3 &&  positionAnterior && !posicaoAtual){
+              novoArray.push(positionAnterior);
+            }else if(posicaoAtual != positionAnterior){
+              novoArray.push(positionAnterior);
+              positionAnterior = posicaoAtual;
+            }
+          }
         }
+        for(var k = novoArray.length; k <= 3; k++) {
+          if(novoArray[k] == null){
+            novoArray.push(null);
+          }
+        }
+        $scope.game[0][i] = novoArray[0];
+        $scope.game[1][i] = novoArray[1];
+        $scope.game[2][i] = novoArray[2];
+        $scope.game[3][i] = novoArray[3];
+
+      }
+    }
+
+    $scope.down = function(){
+      $scope.game =  $scope.game.reverse();
+      $scope.up();
+      $scope.game =  $scope.game.reverse();
+    }
+
+    $scope.right = function(){
+      reverseArray($scope.game)
+      $scope.left();
+      reverseArray($scope.game)
+    }
+
+    function reverseArray(array){
+      array[0] = array[0].reverse();
+      array[1] = array[1].reverse();
+      array[2] = array[2].reverse();
+      array[3] = array[3].reverse();
+    }
+
+    function color(){
+      for(var i = 0; i < $scope.game.length; i++) {
+        for(var j = 0; j < $scope.game[i].length; j++) {
+          switch($scope.game[i][j]){
+            case 2:
+              $scope.color[i][j] = 'Gold';
+              break;
+            case 4:
+              $scope.color[i][j] = 'DarkOrange';
+              break;
+            case 8:
+              $scope.color[i][j] = 'DodgerBlue';
+              break;
+            case 16:
+              $scope.color[i][j] = 'DeepSkyBlue';
+              break;
+            case 32:
+              $scope.color[i][j] = 'DeepPink';
+              break;
+            case 64:
+              $scope.color[i][j] = 'LawnGreen';
+              break;
+            case 128:
+              $scope.color[i][j] = 'Orchid';
+              break;
+            case 256:
+              $scope.color[i][j] = 'MediumPurple';
+              break;
+            case 512:
+              $scope.color[i][j] = 'DeepPink';
+              break;
+            case 1024:
+              $scope.color[i][j] = 'DodgerBlue';
+              break;
+            case 2048:
+              $scope.color[i][j] = 'BlueViolet';
+              break;
+            default:
+              $scope.color[i][j] = 'Gray';
+              break;
+          }
+        };
       };
-    };
-  }
-});
+    }
+
+    function random(){
+      let posicoesVazias = [];
+      let contador = 0;
+      for(var i = 0; i < $scope.game.length; i++) {
+        for(var j = 0; j < $scope.game[i].length; j++) {
+          if($scope.game[i][j] == null){
+            posicoesVazias[contador] = [i,j]
+            contador++;
+          }
+        };
+      };
+      if(contador){
+        posicaoRamdom = Math.floor(Math.random() * posicoesVazias.length);
+        $scope.game[posicoesVazias[posicaoRamdom][0]][posicoesVazias[posicaoRamdom][1]] = 2;
+      }
+    }
+
+    function igual(arrayAntigo) {
+      return JSON.stringify(arrayAntigo) === JSON.stringify($scope.game);
+    }
+
+    $scope.novoJogo = function(){
+      $scope.game = [
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null],
+        [null, null, null, null]
+      ];
+      random();
+      random();
+      color();
+    }
+
+    function fimDeJogo(){
+
+      for(var i = 0; i < $scope.game.length; i++) {
+        for(var j = 0; j < $scope.game[i].length; j++) {
+          if($scope.game[i][j] == 2048){
+            alert("Fim de Jogo, Você ganhou!");
+            return;
+          }
+        }
+      }
+
+      $scope.game['0']['0'] && $scope.game['0']['1'] && $scope.game['0']['2'] && $scope.game['0']['3'] &&
+      $scope.game['1']['0'] && $scope.game['1']['1'] && $scope.game['1']['2'] && $scope.game['1']['3'] &&
+      $scope.game['2']['0'] && $scope.game['2']['1'] && $scope.game['2']['2'] && $scope.game['2']['3'] &&
+      $scope.game['3']['0'] && $scope.game['3']['1'] && $scope.game['3']['2'] && $scope.game['3']['3'] &&
+  
+      $scope.game['0']['0'] != $scope.game['0']['1'] && $scope.game['0']['1'] != $scope.game['0']['2'] && $scope.game['0']['2'] != $scope.game['0']['3'] &&
+      $scope.game['1']['0'] != $scope.game['1']['1'] && $scope.game['1']['1'] != $scope.game['1']['2'] && $scope.game['1']['2'] != $scope.game['1']['3'] &&
+      $scope.game['2']['0'] != $scope.game['2']['1'] && $scope.game['2']['1'] != $scope.game['2']['2'] && $scope.game['2']['2'] != $scope.game['2']['3'] &&
+      $scope.game['3']['0'] != $scope.game['3']['1'] && $scope.game['3']['1'] != $scope.game['3']['2'] && $scope.game['3']['2'] != $scope.game['3']['3'] &&
+  
+      $scope.game['0']['0'] != $scope.game['1']['0'] && $scope.game['1']['0'] != $scope.game['2']['0'] && $scope.game['2']['0'] != $scope.game['3']['0'] &&
+      $scope.game['0']['1'] != $scope.game['1']['1'] && $scope.game['1']['1'] != $scope.game['2']['1'] && $scope.game['2']['1'] != $scope.game['3']['1'] &&
+      $scope.game['0']['2'] != $scope.game['1']['2'] && $scope.game['1']['2'] != $scope.game['2']['2'] && $scope.game['2']['2'] != $scope.game['3']['2'] &&
+      $scope.game['0']['3'] != $scope.game['1']['3'] && $scope.game['1']['3'] != $scope.game['2']['3'] && $scope.game['2']['3'] != $scope.game['3']['3']
+       ? alert('Jogo Acabou, Você perdeu!') : false;
+    }
+  
+  });
 })(window.angular);

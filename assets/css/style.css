@@ -1,18 +1,8 @@
-header{
-    width: 100%;
-    height: 100px;
-}
-
-header > img {
-    position: absolute;
-    right: 30px;
-    top: 10px;
-}
-
 body{
     text-align: center;
     margin: 0 auto;
     background-color: currentColor;
+    user-select: none;
 }
 
 .square{
@@ -43,19 +33,20 @@ body{
     text-align: center;
 }
 
-.font{
+.title{
     font-family: 'Courier New', monospace;
     font-weight: bold;
     text-align: center;
     font-size: 6rem;
     color: white;
-    -webkit-text-stroke: 2px darkgray;
 }
 
-.value{
-    font-size: xx-large;
-    text-align: center;
+.font-game{
     margin-top: 30px;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    font-size: 2rem;
+    color: white;
 }
 
 .game{
@@ -63,10 +54,9 @@ body{
     margin: 0 auto;
 }
 
-.img-sl{
-    max-width: 75px;
-}
-
-.b-radium-50{
-    border-radius: 50%;
+@media(min-width: 1001px) 
+{
+  .key{
+    display: none;
+   }
 }
