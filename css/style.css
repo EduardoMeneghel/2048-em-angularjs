@@ -48,6 +48,7 @@ body{
 }
 
 .font-game{
+    display: inline-block;
     margin-top: 30px;
     font-family: 'Courier New', monospace;
     text-align: center;
