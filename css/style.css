@@ -41,6 +41,12 @@ body{
     color: white;
 }
 
+.container-game{
+    max-width: 429px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .font-game{
     margin-top: 30px;
     font-family: 'Courier New', monospace;
@@ -50,9 +56,44 @@ body{
 }
 
 .game{
-    max-width: 404px;
+    max-width: 429px;
     margin: 0 auto;
+    background: white;
+    padding: 10px 25px;
+    border-radius: 15px;
 }
+
+.lose{
+    max-width: 429px;
+    margin: 0 auto;
+    background: red;
+    opacity: 90%;
+    padding: 10px 25px;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+.game-message-bg{
+    position: absolute;
+    border-radius: 15px;
+    margin: 0 auto;
+    opacity: 50%;
+    z-index: 2;
+    width: 429px;
+    height: 460px;
+}
+
+.game-message{
+    position: absolute;
+    font-size: 5rem;
+    max-width: 429px;
+    margin-top: 155px;
+    font-weight: 900;
+    z-index: 3;
+    opacity: 1;
+    font-family: 'Courier New', monospace;
+}
+
 
 @media(min-width: 1001px) 
 {

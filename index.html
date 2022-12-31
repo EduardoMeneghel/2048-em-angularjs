@@ -3,16 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>2048</title>
-    <link href="./assets/css/bootstrap.css" rel="stylesheet">
-    <link href="./assets/css/reset.css" rel="stylesheet">
-    <link href="./assets/css/style.css" rel="stylesheet">
-    <script src="./assets/js/angular.min.js"></script>
-    <script src="./assets/js/angularjs/gameController"></script>
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/reset.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/angularjs/gameController"></script>
   </head>
   <body ng-controller="ngGameController" ng-keydown="keyPress($event)">
-    <div class="container">
-      <h1 class="my-5 title">2048</h1>
-      <main class="game mt-5">
+    <div class="container-game">
+      <p class="my-5 title">2048</p>
+      <p class="font-game mb-5">RECORDE:{{recorde}}<br>PONTUAÇÃO:{{pontuacao}}</p>
+      <div class="game-message-bg" style="background-color:{{mensagem[0][1]}};">
+      </div>
+      <p class="game-message" style="color:{{mensagem[0][2]}};">
+        {{mensagem[0][0]}}
+      </p>
+      <main class="game">
         <div class="row">
           <div class="col square" style="background-color: {{color[0][0]}};">
             <p class="font-game">{{game[0][0]}}</p>
