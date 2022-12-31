@@ -3,5 +3,5 @@
 <h1 align="center">
     <a href="https://2048angularjs.netlify.app/">🎮 2048</a>
 </h1>
-<p align="center">⬆️ Para jogar batá clicar no link acima ⬆️</p>
+<p align="center">⬆️ Para jogar basta clicar no link acima ⬆️</p>
 <h3>✅ Projeto Finalizado</h3>
