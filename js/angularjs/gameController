@@ -199,7 +199,7 @@
               $scope.color[i][j] = 'DeepPink';
               break;
             case 64:
-              $scope.color[i][j] = 'LawnGreen';
+              $scope.color[i][j] = 'Hotpink';
               break;
             case 128:
               $scope.color[i][j] = 'Orchid';
